@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         }
 
         //애니메이션 및 점프 판정
-        if (isFeetGrounded && !ani.IsPlaying("jump"))   //땅위에 있으면서 점프중이 아닐경우
+        if (isFeetGrounded && !ani.IsPlaying("jump"))   //땅위에 있으면서 점프중이 아닐경우 (Case)
         {
             if (ani.IsPlaying("falling"))                                               //떨어지는 중일때 땅에 닿으면 착지 모션
                 ani.CrossFade("landing");

@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        getProblem();
     }
     
     void Update()
@@ -27,5 +27,13 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(player[Random.Range(0,player.Length)], respawnPoint.position, Quaternion.Euler(0, 0, 0), transform);
         }
+    }
+
+
+    void getProblem()
+    {
+        problemDatabase p = gameObject.AddComponent<problemDatabase>();
+        p.sqlProblemInfo();
+        Debug.Log(p.plist[0]);
     }
 }
