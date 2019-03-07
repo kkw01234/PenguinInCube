@@ -5,7 +5,13 @@ using UnityEngine;
 public class Cube : MonoBehaviour
 {
     public MeshRenderer[] outsideWall;
+    public TextMesh[] bottomExample;
+    public static Cube instance;
 
+    void Awake()
+    {
+        instance = this;
+    }
     void Update()
     {
         OnOffOutsideWall();
@@ -25,4 +31,25 @@ public class Cube : MonoBehaviour
                 outsideWall[i].enabled = true;
         }
     }
+
+    public void loadExample(Problem problem)
+    {
+        int answernumber = (int) Random.Range(0, 4);
+
+        TextMesh answer = bottomExample[answernumber];
+        answer.text = problem.answer;
+        int j = 0;
+        for (int i = 0; i < bottomExample.Length; i++)
+        {
+            if (i != answernumber)
+            {
+                TextMesh text = bottomExample[i];
+                text.text = problem.wronganswer[j];
+                j++;
+            }
+            
+           
+            
+        }
+}
 }

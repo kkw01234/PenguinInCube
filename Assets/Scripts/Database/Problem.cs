@@ -9,12 +9,13 @@ public class Problem : MonoBehaviour
     public string picture;
     public string answer;
     public List<string> wronganswer;
+    public int level;
 
     void Awake()
     {
         wronganswer = new List<string>();
     }
-    public void setProblem(int id, string question, string picture, string answer, string wrong1,string wrong2, string wrong3)
+    public void setProblem(int id, string question, string picture, string answer, string wrong1,string wrong2, string wrong3, int level)
     
     {
         this.id = id;
@@ -24,5 +25,6 @@ public class Problem : MonoBehaviour
         wronganswer.Add(wrong1);
         wronganswer.Add(wrong2);
         wronganswer.Add(wrong3);
+        this.level = level;
     }
 }

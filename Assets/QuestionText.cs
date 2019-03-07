@@ -7,22 +7,27 @@ public class QuestionText : MonoBehaviour
     // Start is called before the first frame update
     public QuestionText instance;
     public TextMesh textMesh;
-   
+
+
+    private bool changeQuestion;
     void Awake()
     {
         instance = this;
         
     }
-    
-    void Start()
-    {
-             
-    }
 
-    // Update is called once per frame
+
     void Update()
     {
         
+    }
+
+    void FixedUpdate()
+    {
+        if (changeQuestion)
+        {
+            int rand = (int) Random.Range(0,problemDatabase.instance.plist.Count);
+        }
     }
     
     

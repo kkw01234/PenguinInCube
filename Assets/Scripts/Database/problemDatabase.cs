@@ -14,7 +14,7 @@ public class problemDatabase : MonoBehaviour
         instance = this;
         plist = new List<Problem>();
     }
-    public void sqlProblemInfo()
+    public void sqlAllProblemInfo() // 모든 문제들 불러 모으는 코드
     {
         sqlLogin login = gameObject.AddComponent<sqlLogin>();
         login.openDatabase("Problem");
@@ -30,15 +30,14 @@ public class problemDatabase : MonoBehaviour
         while (reader.Read())
         {
             Problem problem = gameObject.AddComponent<Problem>();
-            problem.id = reader.GetInt32(0);
-            problem.question = reader.GetString(1);
-            problem.picture = reader.GetString(2);
-            problem.answer = reader.GetString(3);
-            for (int i = 4; i < 7; ++i)
-            {
-                problem.wronganswer.Add(reader.GetString(i));
-            }
-
+            problem.setProblem(reader.GetInt32(0),
+                reader.GetString(1),
+                reader.GetString(2),
+                reader.GetString(3),
+                reader.GetString(4),
+                reader.GetString(5),
+                reader.GetString(6),
+                reader.GetInt32(7));    
             plist.Add(problem);
             problem = null;
             n++;
@@ -47,5 +46,40 @@ public class problemDatabase : MonoBehaviour
         reader.Close();
         reader = null;
         login.closeDatabase();
+    }
+
+    public void sqlsomeProblemInfo(int level)  //레벨별로 불러오는 것
+    {
+        sqlLogin login = gameObject.AddComponent<sqlLogin>();
+        login.openDatabase("Problem");
+        IDbCommand dbcmd = sqlLogin.instance.dbconn.CreateCommand();
+        string sqlQuery = "SELECT * FROM problem WHERE level =" + level;
+        dbcmd.CommandText = sqlQuery;
+        IDataReader reader = dbcmd.ExecuteReader();
+
+        int n = 0;
+        while (reader.Read())
+        {
+            Problem problem = gameObject.AddComponent<Problem>();
+            problem.setProblem(reader.GetInt32(0),
+                reader.GetString(1),
+                reader.GetString(2),
+                reader.GetString(3),
+                reader.GetString(4),
+                reader.GetString(5),
+                reader.GetString(6),
+                reader.GetInt32(7));    
+            plist.Add(problem);
+            problem = null;
+            n++;
+        }
+        login.closeDatabase();
+    }
+
+
+    public Problem getQuestion(int id)
+    {
+        Problem problem = plist[id];
+        return problem;
     }
 }

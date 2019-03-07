@@ -13,13 +13,9 @@ public class sqlLogin : MonoBehaviour
         instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 
-    public void openDatabase(string dbname)
+    public void openDatabase(string dbname) //SQL 로그인
     {
 
         string conn = "URI=file:" + dbname+".db";
@@ -27,7 +23,7 @@ public class sqlLogin : MonoBehaviour
         dbconn.Open();
     }
 
-    public void closeDatabase()
+    public void closeDatabase() // SQL 로그아웃
     {
         dbconn.Close();
         dbconn = null;
