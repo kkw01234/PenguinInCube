@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public bool isGameStart = true;
+    public Button startButton;
+    public bool isGameStart = false;
     public GameObject[] player;
     public Transform respawnPoint;  //게임 시작시 플레이어 리스폰 장소
     public int level;
@@ -31,10 +33,12 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        //꿀잼
-        if (Input.GetKeyDown(KeyCode.Z))
+        //임시게임 종료 버튼
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            Instantiate(player[Random.Range(0,player.Length)], respawnPoint.position, Quaternion.Euler(0, 0, 0), transform); //Player
+            Destroy(this.GetComponentInChildren<Player>().gameObject);
+            isGameStart = false;
+            startButton.gameObject.SetActive(true);
         }
         
     }
@@ -66,5 +70,6 @@ public class GameManager : MonoBehaviour
     {
         problemDatabase p = gameObject.AddComponent<problemDatabase>();
         p.sqlsomeProblemInfo(1);
+
     }
 }
