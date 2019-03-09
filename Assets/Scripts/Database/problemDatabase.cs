@@ -15,10 +15,10 @@ public class ProblemDatabase : MonoBehaviour
         instance = this;
         plist = new List<Problem>();
     }
-    public void sqlAllProblemInfo() // 모든 문제들 불러 모으는 코드
+    public void SqlAllProblemInfo() // 모든 문제들 불러 모으는 코드
     {
         plist.Clear();
-        SqlLogin.instance.openDatabase("Problem");
+        SqlLogin.instance.OpenDatabase("Problem");
         IDbCommand dbcmd = SqlLogin.instance.dbconn.CreateCommand();
 
         string sqlQuery = "SELECT * FROM problem";
@@ -45,13 +45,13 @@ public class ProblemDatabase : MonoBehaviour
 
         reader.Close();
         reader = null;
-        SqlLogin.instance.closeDatabase();
+        SqlLogin.instance.CloseDatabase();
     }
 
-    public void sqlsomeProblemInfo(int level)  //레벨별로 불러오는 것
+    public void SqlsomeProblemInfo(int level)  //레벨별로 불러오는 것
     {
         plist.Clear();
-        SqlLogin.instance.openDatabase("Problem");
+        SqlLogin.instance.OpenDatabase("Problem");
         IDbCommand dbcmd = SqlLogin.instance.dbconn.CreateCommand();
         string sqlQuery = "SELECT * FROM problem WHERE level =" + level;
         dbcmd.CommandText = sqlQuery;
@@ -72,11 +72,11 @@ public class ProblemDatabase : MonoBehaviour
             plist.Add(problem);
             n++;
         }
-        SqlLogin.instance.closeDatabase();
+        SqlLogin.instance.CloseDatabase();
     }
 
 
-    public Problem getQuestion(int id)
+    public Problem GetQuestion(int id)
     {
         Problem problem = plist[id];
         return problem;

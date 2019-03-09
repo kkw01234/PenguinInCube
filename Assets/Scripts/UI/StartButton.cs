@@ -17,8 +17,8 @@ public class StartButton : MonoBehaviour, IPointerUpHandler
     //시작 버튼을 눌렀을 시 플레이어 생성
     public void OnPointerUp(PointerEventData eventData)
     {
-        Instantiate(gameManager.player[Random.Range(0, gameManager.player.Length)], gameManager.respawnPoint.position,
-            Quaternion.Euler(0, 0, 0));
+        Instantiate(gameManager.player, gameManager.respawnPoint.position, Quaternion.LookRotation(new Vector3(0, 0, -1)));
+        gameManager.player.GetComponentInChildren<MeshRenderer>().material = gameManager.slimeColor[Random.Range(0, gameManager.slimeColor.Length)];
         gameManager.isGameStart = true;
         gameObject.SetActive(false);
     }

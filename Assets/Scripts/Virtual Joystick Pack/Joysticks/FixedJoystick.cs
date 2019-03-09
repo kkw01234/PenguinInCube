@@ -3,8 +3,14 @@ using UnityEngine.EventSystems;
 
 public class FixedJoystick : Joystick
 {
+    public static FixedJoystick instance;
     Vector2 joystickPosition = Vector2.zero;
     private Camera cam = new Camera();
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {

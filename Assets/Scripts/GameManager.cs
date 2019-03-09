@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
 
     public Button startButton;
     public bool isGameStart = false;
-    public GameObject[] player;
+    public GameObject player;
+    public Material[] slimeColor;
     public GameObject[] arrows;
     public Chanel chanel;
     public Clock timer;
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
         //임시게임 종료 버튼
         if (Input.GetKeyDown(KeyCode.X) && isGameStart)
         {
-            clear();
+            Clear();
             Debug.Log("game Exit");
         }
 
@@ -47,11 +48,11 @@ public class GameManager : MonoBehaviour
         {
             if (loadProblem)
             {
-                getProblem();
+                GetProblem();
                 chanel.RandomChanel();
                 int rand = (int) Random.Range(0, ProblemDatabase.instance.plist.Count);
                 // Debug.Log("case : " + rand);
-                presentProblem = ProblemDatabase.instance.getQuestion(rand);
+                presentProblem = ProblemDatabase.instance.GetQuestion(rand);
                 // Debug.Log(presentProblem.question);
                 questionMesh.text = presentProblem.question;
                 questionMesh.color = Color.black;
@@ -63,9 +64,9 @@ public class GameManager : MonoBehaviour
             if (complete)
             {
                 int moveIndex = (answerNumber + 2) % 4;
-                Player.instance.transform.position = new Vector3(
-                    arrows[moveIndex].transform.position.x, 
-                    Player.instance.gameObject.transform.position.y,
+                GGUMI.instance.transform.position = new Vector3(
+                    arrows[moveIndex].transform.position.x,
+                    GGUMI.instance.gameObject.transform.position.y,
                     arrows[moveIndex].transform.position.z);
                 Debug.Log("You are right " + level);
                 level++;
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
             if (fail)
             {
                 fail = false;
-                clear();
+                Clear();
                 Debug.Log("You are wrong " + level);
             }
         }
@@ -87,25 +88,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void checkAnswer(int answer)
+    public void CheckAnswer(int answer)
     {
         if (answer == answerNumber) complete = true;
         else fail = true;
     }
 
-    void clear()
+    void Clear()
     {
         level = 1;
         loadProblem = true;
         isGameStart = false;
         Cube.instance.clearExample();
-        Destroy(Player.instance.gameObject);
         questionMesh.text = "";
         startButton.gameObject.SetActive(true);
     }
     
-    void getProblem()
+    void GetProblem()
     {
-        ProblemDatabase.instance.sqlsomeProblemInfo(level);
+        ProblemDatabase.instance.SqlsomeProblemInfo(level);
     }
 }

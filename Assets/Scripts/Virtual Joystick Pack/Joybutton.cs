@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Joybutton : MonoBehaviour,IPointerUpHandler
+public class Joybutton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
     public bool isPressed = false;
-    public String action;
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        isPressed = true;
+    }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        isPressed = true;
-        // Debug.Log(action + " up");
+        isPressed = false;
     }
 }

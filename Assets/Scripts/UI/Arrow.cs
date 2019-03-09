@@ -18,10 +18,10 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerStay(Collider player)
     {
-        if (Player.instance.joyActionButton.isPressed)
+        if (GGUMI.instance.joyActionButton.isPressed)
         {
-            Player.instance.joyActionButton.isPressed = false;
-            GameManager.instance.checkAnswer(number);
+            GGUMI.instance.joyActionButton.isPressed = false;
+            GameManager.instance.CheckAnswer(number);
         }
     }
 }

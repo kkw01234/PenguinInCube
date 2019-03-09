@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log(joystick.isActiveAndEnabled);
         PlayerMoveController();
     }
 
@@ -66,11 +65,10 @@ public class Player : MonoBehaviour
                 ani.CrossFade("idle");
             else //가만히 있지 않을 경우 걷기 모션
                 ani.CrossFade("walk");
-            if (Input.GetButtonDown("Jump") || joyJumpButton.isPressed) //"점프"버튼을 눌렀을 경우 점프 모션
+            if (Input.GetButton("Jump") || joyJumpButton.isPressed) //"점프"버튼을 누른상태일 경우 점프 모션
             {
                 ani.CrossFade("jump");
                 rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse); //위로 힘을 가해서 점프
-                joyJumpButton.isPressed = false;
             }
         }
         else if (ani.IsPlaying("jump")) //땅에 닿아있지 않으면서 점프중일 경우

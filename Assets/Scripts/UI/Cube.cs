@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
+    public static Cube instance;
+
     public MeshRenderer[] outsideWall;
     public TextMesh[] bottomExample;
-    public static Cube instance;
 
     void Awake()
     {
@@ -26,7 +27,7 @@ public class Cube : MonoBehaviour
             for (int i = 0; i < outsideWall.Length; i++)
                 outsideWall[i].enabled = false;
         }
-        else if (!GameManager.instance.isGameStart && !outsideWall[0].isVisible) //게임 종료시 외벽생성
+        else if (GGUMI.instance == null && !outsideWall[0].isVisible) //게임 종료시 외벽생성
         {
             for (int i = 0; i < outsideWall.Length; i++)
                 outsideWall[i].enabled = true;
