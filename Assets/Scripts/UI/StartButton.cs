@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
-public class StartButton : MonoBehaviour, IPointerDownHandler
+public class StartButton : MonoBehaviour, IPointerUpHandler
 {
     private GameManager gameManager;
 
@@ -13,10 +15,11 @@ public class StartButton : MonoBehaviour, IPointerDownHandler
     }
 
     //시작 버튼을 눌렀을 시 플레이어 생성
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData)
     {
-        Instantiate(gameManager.player[Random.Range(0, gameManager.player.Length)], gameManager.respawnPoint.position, Quaternion.Euler(0, 0, 0), gameManager.transform);
+        Instantiate(gameManager.player[Random.Range(0, gameManager.player.Length)], gameManager.respawnPoint.position,
+            Quaternion.Euler(0, 0, 0));
         gameManager.isGameStart = true;
-        gameManager.startButton.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

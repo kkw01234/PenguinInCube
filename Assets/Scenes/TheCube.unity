@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4453575, g: 0.48936534, b: 0.5436153, a: 1}
+  m_IndirectSpecularColor: {r: 0.44535774, g: 0.48936522, b: 0.5436156, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -187,6 +187,14 @@ PrefabInstance:
       propertyPath: joybutton
       value: 
       objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyJumpButton
+      value: 
+      objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyActionButton
+      value: 
+      objectReference: {fileID: 1516462945}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
 --- !u!4 &123013360 stripped
@@ -333,6 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPressed: 0
+  action: Jump
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,6 +698,14 @@ PrefabInstance:
       propertyPath: joybutton
       value: 
       objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyJumpButton
+      value: 
+      objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyActionButton
+      value: 
+      objectReference: {fileID: 1516462945}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
 --- !u!4 &291007895 stripped
@@ -963,6 +980,14 @@ PrefabInstance:
       propertyPath: joybutton
       value: 
       objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyJumpButton
+      value: 
+      objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyActionButton
+      value: 
+      objectReference: {fileID: 1516462945}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
 --- !u!4 &320461797 stripped
@@ -1077,7 +1102,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444346491}
   m_LocalRotation: {x: 0.0000014901161, y: 0.000000021073426, z: 3.114171e-14, w: 1}
-  m_LocalPosition: {x: -0.69, y: -0.47, z: 0.03}
+  m_LocalPosition: {x: -0.94, y: -0.47, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1572268778}
@@ -1096,7 +1121,7 @@ TextMesh:
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 0
-  m_Alignment: 0
+  m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 0
   m_FontStyle: 0
@@ -1256,7 +1281,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10.194336, y: 10}
+  m_AnchoredPosition: {x: -15, y: 639}
   m_SizeDelta: {x: 120, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &473058828
@@ -1281,7 +1306,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1314,6 +1339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elapsedTime: 0
+  startTime: 0
 --- !u!1 &505255127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,13 +1524,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519331925}
-  m_LocalRotation: {x: -0.017686093, y: 0.99949783, z: -0.023355454, w: 0.012074703}
-  m_LocalPosition: {x: 0.8146674, y: -0.56916183, z: -0.03904152}
+  m_LocalRotation: {x: -0.99959856, y: -0.010572705, z: -0.0122407945, w: -0.023264527}
+  m_LocalPosition: {x: -0.91, y: -1.98, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 654992539}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 177.349, y: -1.4320068, z: -182.061}
+  m_LocalEulerAnglesHint: {x: 177.349, y: -1.4320068, z: -361.245}
 --- !u!102 &519331927
 TextMesh:
   serializedVersion: 3
@@ -1518,7 +1544,7 @@ TextMesh:
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 0
-  m_Alignment: 0
+  m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 0
   m_FontStyle: 0
@@ -1795,13 +1821,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597797112}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.78, y: -0.47, z: 0}
+  m_LocalRotation: {x: 0.00000006844424, y: 0.00000019488475, z: 0.99996483, w: 0.008389441}
+  m_LocalPosition: {x: 1.11, y: -1.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 888803165}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 179.039}
 --- !u!102 &597797114
 TextMesh:
   serializedVersion: 3
@@ -1815,7 +1841,7 @@ TextMesh:
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 0
-  m_Alignment: 0
+  m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 0
   m_FontStyle: 0
@@ -1871,6 +1897,8 @@ GameObject:
   m_Component:
   - component: {fileID: 654992539}
   - component: {fileID: 654992540}
+  - component: {fileID: 654992541}
+  - component: {fileID: 654992542}
   m_Layer: 0
   m_Name: arrow_SE
   m_TagString: Untagged
@@ -1941,6 +1969,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &654992541
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654992538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -0.0000004208088, y: -0.0000004768372, z: 0.5}
+--- !u!114 &654992542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654992538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98f2b24ba45ba14db2b35300a7d197e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 2
 --- !u!1 &669981789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,7 +2302,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 838827473}
+  - component: {fileID: 838827476}
   - component: {fileID: 838827474}
+  - component: {fileID: 838827475}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2293,9 +2349,40 @@ MonoBehaviour:
   - {fileID: 123013361}
   - {fileID: 1622735558}
   - {fileID: 291007896}
+  arrows:
+  - {fileID: 1572268777}
+  - {fileID: 1884592905}
+  - {fileID: 654992538}
+  - {fileID: 888803164}
+  chanel: {fileID: 312757628}
+  timer: {fileID: 473058830}
   respawnPoint: {fileID: 1665863634}
   level: 0
   questionMesh: {fileID: 774726761}
+--- !u!114 &838827475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838827472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8067ed7da6e95644b62fd3077da0c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &838827476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838827472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4760421f09771246a093357663969f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &888803164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,6 +2393,8 @@ GameObject:
   m_Component:
   - component: {fileID: 888803165}
   - component: {fileID: 888803166}
+  - component: {fileID: 888803167}
+  - component: {fileID: 888803168}
   m_Layer: 0
   m_Name: arrow_SW
   m_TagString: Untagged
@@ -2376,6 +2465,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &888803167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888803164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -0.00000042080876, y: -0.00000047683716, z: -0.5}
+--- !u!114 &888803168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888803164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98f2b24ba45ba14db2b35300a7d197e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 3
 --- !u!1 &911223127
 GameObject:
   m_ObjectHideFlags: 0
@@ -2703,6 +2818,14 @@ PrefabInstance:
       propertyPath: joybutton
       value: 
       objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyJumpButton
+      value: 
+      objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyActionButton
+      value: 
+      objectReference: {fileID: 1516462945}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
 --- !u!4 &1033521404 stripped
@@ -3305,13 +3428,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346312944}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.69, y: -0.4, z: 0}
+  m_LocalRotation: {x: -0.000000016734246, y: -0.00000005350966, z: -0.009575396,
+    w: 0.9999542}
+  m_LocalPosition: {x: -1.01, y: -0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1884592906}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.097}
 --- !u!102 &1346312946
 TextMesh:
   serializedVersion: 3
@@ -3325,7 +3449,7 @@ TextMesh:
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 0
-  m_Alignment: 0
+  m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 0
   m_FontStyle: 0
@@ -3632,6 +3756,7 @@ GameObject:
   - component: {fileID: 1516462948}
   - component: {fileID: 1516462947}
   - component: {fileID: 1516462946}
+  - component: {fileID: 1516462945}
   m_Layer: 5
   m_Name: ActionButton
   m_TagString: Untagged
@@ -3659,6 +3784,20 @@ RectTransform:
   m_AnchoredPosition: {x: -80, y: 110}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1516462945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516462943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640fb591d652b5b4f853031a6e6f8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPressed: 0
+  action: Action
 --- !u!114 &1516462946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3748,6 +3887,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1572268778}
   - component: {fileID: 1572268779}
+  - component: {fileID: 1572268780}
+  - component: {fileID: 1572268781}
   m_Layer: 0
   m_Name: arrow_NW
   m_TagString: Untagged
@@ -3763,8 +3904,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572268777}
   m_LocalRotation: {x: -0.0000015199184, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.44851488, z: -0.6000042}
-  m_LocalScale: {x: 0.0990099, y: 0.0990099, z: 20}
+  m_LocalPosition: {x: 0, y: 0.449, z: -0.5999994}
+  m_LocalScale: {x: 0.09900995, y: 0.0990099, z: 20}
   m_Children:
   - {fileID: 444346492}
   m_Father: {fileID: 1987874258}
@@ -3818,6 +3959,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1572268780
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572268777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -0.000000027684337, y: 0.0000009536743, z: -0.5}
+--- !u!114 &1572268781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572268777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98f2b24ba45ba14db2b35300a7d197e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 0
 --- !u!1 &1580022157
 GameObject:
   m_ObjectHideFlags: 0
@@ -3959,6 +4126,14 @@ PrefabInstance:
       propertyPath: joybutton
       value: 
       objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyJumpButton
+      value: 
+      objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyActionButton
+      value: 
+      objectReference: {fileID: 1516462945}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
 --- !u!4 &1622735557 stripped
@@ -4056,8 +4231,8 @@ MonoBehaviour:
   bottomExample:
   - {fileID: 444346493}
   - {fileID: 1346312946}
-  - {fileID: 597797114}
   - {fileID: 519331927}
+  - {fileID: 597797114}
 --- !u!1001 &1744921675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4304,6 +4479,14 @@ PrefabInstance:
       propertyPath: joybutton
       value: 
       objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyJumpButton
+      value: 
+      objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyActionButton
+      value: 
+      objectReference: {fileID: 1516462945}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
 --- !u!1 &1818858542 stripped
@@ -4502,6 +4685,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1884592906}
   - component: {fileID: 1884592907}
+  - component: {fileID: 1884592908}
+  - component: {fileID: 1884592909}
   m_Layer: 0
   m_Name: arrow_NE
   m_TagString: Untagged
@@ -4572,6 +4757,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1884592908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884592905}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.000000051004463, y: -0.00000047683716, z: -0.5}
+--- !u!114 &1884592909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884592905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98f2b24ba45ba14db2b35300a7d197e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 1
 --- !u!1 &1894952606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4780,6 +4991,14 @@ PrefabInstance:
       propertyPath: joybutton
       value: 
       objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyJumpButton
+      value: 
+      objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyActionButton
+      value: 
+      objectReference: {fileID: 1516462945}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
 --- !u!4 &1980051543 stripped
@@ -4978,6 +5197,14 @@ PrefabInstance:
       propertyPath: joybutton
       value: 
       objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyJumpButton
+      value: 
+      objectReference: {fileID: 138318557}
+    - target: {fileID: 1818858544, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
+      propertyPath: joyActionButton
+      value: 
+      objectReference: {fileID: 1516462945}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a268afa9d3f8bfe4aa12d1cadb4b647a, type: 3}
 --- !u!4 &2043372405 stripped

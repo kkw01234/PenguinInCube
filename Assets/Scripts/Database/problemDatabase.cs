@@ -4,10 +4,11 @@ using System.Data;
 using System.Data.Common;
 using UnityEngine;
 
-public class problemDatabase : MonoBehaviour
+public class ProblemDatabase : MonoBehaviour
 {
-    public static problemDatabase instance;
+    public static ProblemDatabase instance;
     public List<Problem> plist = null;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,9 +17,9 @@ public class problemDatabase : MonoBehaviour
     }
     public void sqlAllProblemInfo() // 모든 문제들 불러 모으는 코드
     {
-        sqlLogin login = gameObject.AddComponent<sqlLogin>();
-        login.openDatabase("Problem");
-        IDbCommand dbcmd = sqlLogin.instance.dbconn.CreateCommand();
+        plist.Clear();
+        SqlLogin.instance.openDatabase("Problem");
+        IDbCommand dbcmd = SqlLogin.instance.dbconn.CreateCommand();
 
         string sqlQuery = "SELECT * FROM problem";
 
@@ -29,7 +30,7 @@ public class problemDatabase : MonoBehaviour
 
         while (reader.Read())
         {
-            Problem problem = gameObject.AddComponent<Problem>();
+            Problem problem = new Problem();
             problem.setProblem(reader.GetInt32(0),
                 reader.GetString(1),
                 reader.GetString(2),
@@ -39,20 +40,19 @@ public class problemDatabase : MonoBehaviour
                 reader.GetString(6),
                 reader.GetInt32(7));    
             plist.Add(problem);
-            problem = null;
             n++;
         }
 
         reader.Close();
         reader = null;
-        login.closeDatabase();
+        SqlLogin.instance.closeDatabase();
     }
 
     public void sqlsomeProblemInfo(int level)  //레벨별로 불러오는 것
     {
-        sqlLogin login = gameObject.AddComponent<sqlLogin>();
-        login.openDatabase("Problem");
-        IDbCommand dbcmd = sqlLogin.instance.dbconn.CreateCommand();
+        plist.Clear();
+        SqlLogin.instance.openDatabase("Problem");
+        IDbCommand dbcmd = SqlLogin.instance.dbconn.CreateCommand();
         string sqlQuery = "SELECT * FROM problem WHERE level =" + level;
         dbcmd.CommandText = sqlQuery;
         IDataReader reader = dbcmd.ExecuteReader();
@@ -60,7 +60,7 @@ public class problemDatabase : MonoBehaviour
         int n = 0;
         while (reader.Read())
         {
-            Problem problem = gameObject.AddComponent<Problem>();
+            Problem problem = new Problem();
             problem.setProblem(reader.GetInt32(0),
                 reader.GetString(1),
                 reader.GetString(2),
@@ -70,10 +70,9 @@ public class problemDatabase : MonoBehaviour
                 reader.GetString(6),
                 reader.GetInt32(7));    
             plist.Add(problem);
-            problem = null;
             n++;
         }
-        login.closeDatabase();
+        SqlLogin.instance.closeDatabase();
     }
 
 

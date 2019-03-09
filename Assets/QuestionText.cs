@@ -26,7 +26,7 @@ public class QuestionText : MonoBehaviour
     {
         if (changeQuestion)
         {
-            int rand = (int) Random.Range(0,problemDatabase.instance.plist.Count);
+            int rand = (int) Random.Range(0,ProblemDatabase.instance.plist.Count);
         }
     }
     

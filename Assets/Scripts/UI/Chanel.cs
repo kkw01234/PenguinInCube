@@ -21,7 +21,7 @@ public class Chanel : MonoBehaviour
     }
 
     //채널을 랜덤하게 바꿔줌
-    void RandomChanel()
+    public void RandomChanel()
     {
         while(nowChanel == newChanel)   //채널 변동이 있을때 까지 랜덤
         {

@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Problem : MonoBehaviour
+public class Problem
 {
     public int id;
     public string question;
     public string picture;
     public string answer;
-    public List<string> wronganswer;
+    public List<string> wronganswer = new List<string>();
     public int level;
 
-    void Awake()
-    {
-        wronganswer = new List<string>();
-    }
-    public void setProblem(int id, string question, string picture, string answer, string wrong1,string wrong2, string wrong3, int level)
-    
+    public void setProblem(int id, string question, string picture, string answer, string wrong1, string wrong2,
+        string wrong3, int level)
     {
         this.id = id;
         this.question = question;
