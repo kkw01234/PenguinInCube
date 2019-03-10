@@ -83,7 +83,7 @@ public class Cube : MonoBehaviour
         }
     }
 
-    void GenerateToy()
+    public void GenerateToy()
     {
         for (int i = 0; i < toy.Length; i++)
         {
@@ -91,9 +91,9 @@ public class Cube : MonoBehaviour
         }
     }
 
-    void ResetToy()
+    public void ResetToy()
     {
-        if (toyPos[0].GetComponentsInChildren<Transform>().Length > 0)
+        if (toyPos[0].GetComponentsInChildren<Transform>().Length > 1)
         {
             for (int i = 0; i < toy.Length; i++)
             {

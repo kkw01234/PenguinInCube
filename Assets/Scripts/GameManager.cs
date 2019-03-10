@@ -72,7 +72,8 @@ public class GameManager : MonoBehaviour
                 level++;
                 complete = false;
                 loadProblem = true;
-                
+                Cube.instance.ResetToy();
+                Cube.instance.GenerateToy();
             }
 
             if (fail)
