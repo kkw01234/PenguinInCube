@@ -9,6 +9,9 @@ public class Cube : MonoBehaviour
     public MeshRenderer[] outsideWall;
     public TextMesh[] bottomExample;
 
+    public Transform[] toyPos;
+    public GameObject[] toy;
+
     void Awake()
     {
         instance = this;
@@ -24,11 +27,13 @@ public class Cube : MonoBehaviour
     {
         if (GameManager.instance.isGameStart && outsideWall[0].isVisible) //게임 시작시 외벽제거
         {
+            GenerateToy();
             for (int i = 0; i < outsideWall.Length; i++)
                 outsideWall[i].enabled = false;
         }
         else if (GGUMI.instance == null && !outsideWall[0].isVisible) //게임 종료시 외벽생성
         {
+            ResetToy();
             for (int i = 0; i < outsideWall.Length; i++)
                 outsideWall[i].enabled = true;
         }
@@ -75,6 +80,25 @@ public class Cube : MonoBehaviour
         for (int i = 0; i < bottomExample.Length; ++i)
         {
             bottomExample[i].text = "";
+        }
+    }
+
+    void GenerateToy()
+    {
+        for (int i = 0; i < toy.Length; i++)
+        {
+            Instantiate(toy[i], toyPos[i]);
+        }
+    }
+
+    void ResetToy()
+    {
+        if (toyPos[0].GetComponentsInChildren<Transform>().Length > 0)
+        {
+            for (int i = 0; i < toy.Length; i++)
+            {
+                Destroy(toyPos[i].GetComponentsInChildren<Transform>()[1].gameObject);
+            }
         }
     }
 }
