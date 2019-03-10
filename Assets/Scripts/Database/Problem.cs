@@ -10,9 +10,10 @@ public class Problem
     public string answer;
     public List<string> wronganswer = new List<string>();
     public int level;
+    public string explanation;
 
     public void setProblem(int id, string question, string picture, string answer, string wrong1, string wrong2,
-        string wrong3, int level)
+        string wrong3, int level,string explanation)
     {
         this.id = id;
         this.question = question;
@@ -22,5 +23,6 @@ public class Problem
         wronganswer.Add(wrong2);
         wronganswer.Add(wrong3);
         this.level = level;
+        this.explanation = explanation;
     }
 }

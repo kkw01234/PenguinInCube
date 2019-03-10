@@ -28,12 +28,21 @@
           <e p="GameManager.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="Foot.cs" t="Include" />
+            <e p="GGUMI.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
+          <e p="Toy" t="Include">
+            <e p="Lever.cs" t="Include" />
+            <e p="Machine.cs" t="Include" />
+            <e p="Valve.cs" t="Include" />
+          </e>
           <e p="UI" t="Include">
+            <e p="Arrow.cs" t="Include" />
             <e p="Chanel.cs" t="Include" />
             <e p="Clock.cs" t="Include" />
             <e p="Cube.cs" t="Include" />
+            <e p="StartButton.cs" t="Include" />
+            <e p="ZoomIn.cs" t="Include" />
           </e>
           <e p="Virtual Joystick Pack" t="Include">
             <e p="Base" t="Include">

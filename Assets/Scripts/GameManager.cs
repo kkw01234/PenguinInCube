@@ -16,9 +16,8 @@ public class GameManager : MonoBehaviour
     public Clock timer;
     public Transform respawnPoint; //게임 시작시 플레이어 리스폰 장소
     public int level;
-    public TextMesh questionMesh;
+    
     private Problem presentProblem; // 현재 문제
-
     private bool loadProblem; //문제를 로드해줌
     private bool complete; // 문제를 맞췄을 경우
     private bool fail; // 문제를 틀렸을 경우
@@ -54,8 +53,7 @@ public class GameManager : MonoBehaviour
                 // Debug.Log("case : " + rand);
                 presentProblem = ProblemDatabase.instance.GetQuestion(rand);
                 // Debug.Log(presentProblem.question);
-                questionMesh.text = presentProblem.question;
-                questionMesh.color = Color.black;
+                Cube.instance.loadQuestion(presentProblem);
                 answerNumber = Cube.instance.loadExample(presentProblem);
                 // Debug.Log(answerNumber);
                 loadProblem = false;
@@ -101,12 +99,12 @@ public class GameManager : MonoBehaviour
         loadProblem = true;
         isGameStart = false;
         Cube.instance.clearExample();
-        questionMesh.text = "";
         startButton.gameObject.SetActive(true);
     }
     
     void GetProblem()
     {
         ProblemDatabase.instance.SqlsomeProblemInfo(level);
+        
     }
 }

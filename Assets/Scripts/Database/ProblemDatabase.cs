@@ -38,7 +38,8 @@ public class ProblemDatabase : MonoBehaviour
                 reader.GetString(4),
                 reader.GetString(5),
                 reader.GetString(6),
-                reader.GetInt32(7));    
+                reader.GetInt32(7),
+                reader.GetString(8));    
             plist.Add(problem);
             n++;
         }
@@ -68,10 +69,13 @@ public class ProblemDatabase : MonoBehaviour
                 reader.GetString(4),
                 reader.GetString(5),
                 reader.GetString(6),
-                reader.GetInt32(7));    
+                reader.GetInt32(7),
+                reader.GetString(8));    
             plist.Add(problem);
             n++;
         }
+        reader.Close();
+        reader = null;
         SqlLogin.instance.CloseDatabase();
     }
 
