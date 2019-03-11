@@ -16,6 +16,13 @@ public class GameManager : MonoBehaviour
     public Clock timer;
     public Transform respawnPoint; //게임 시작시 플레이어 리스폰 장소
     public int level;
+
+    public Text timeRecord_best;
+    public Text levelRecord_best;
+    public Text timeRecord_now;
+    public Text levelRecord_now;
+    private int time_best = 999999;
+    private int level_best = 0;
     
     private Problem presentProblem; // 현재 문제
     private bool loadProblem; //문제를 로드해줌
@@ -85,6 +92,9 @@ public class GameManager : MonoBehaviour
         {
             timer.reset();
         }
+
+        if(GGUMI.instance == null)
+            startButton.gameObject.SetActive(true);
     }
 
     public void CheckAnswer(int answer)
@@ -95,11 +105,31 @@ public class GameManager : MonoBehaviour
 
     void Clear()
     {
+        if (level > level_best)
+        {
+            level_best = level;
+            levelRecord_best.text = string.Format("No. {0:00}", level);
+            time_best = 999999;
+            if ((timer.hour * 3600 + timer.min * 60 + timer.sec) < time_best)
+            {
+                time_best = timer.hour * 3600 + timer.min * 60 + timer.sec;
+                timeRecord_best.text = string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec); //두 자리수로 나타냄
+            }
+        }
+        else if (level == level_best)
+        {
+            if ((timer.hour * 3600 + timer.min * 60 + timer.sec) < time_best)
+            {
+                time_best = timer.hour * 3600 + timer.min * 60 + timer.sec;
+                timeRecord_best.text = string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec); //두 자리수로 나타냄
+            }
+        }
+        timeRecord_now.text = string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec); //두 자리수로 나타냄
+        levelRecord_now.text = string.Format("No. {0:00}", level);
         level = 1;
         loadProblem = true;
         isGameStart = false;
         Cube.instance.clearExample();
-        startButton.gameObject.SetActive(true);
     }
     
     void GetProblem()

@@ -9,7 +9,7 @@ public class Clock : MonoBehaviour
     private Text timer; //타이머의 텍스트
     public int elapsedTime; //게임이 켜진 후부터 경과된 시간
     public int startTime; // 새로운 게임 시작한 시간
-    private int sec, min, hour; //초, 분, 시
+    public int sec, min, hour; //초, 분, 시
 
     void Start()
     {
