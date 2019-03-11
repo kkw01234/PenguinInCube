@@ -76,7 +76,10 @@
     <Compile Include="Assets\Scripts\UI\Arrow.cs" />
     <Compile Include="Assets\Scripts\UI\Chanel.cs" />
     <Compile Include="Assets\Scripts\UI\Clock.cs" />
+    <Compile Include="Assets\Scripts\UI\CloseAnswerPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\CloseEndPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Cube.cs" />
+    <Compile Include="Assets\Scripts\UI\OpenAnswerPanel.cs" />
     <Compile Include="Assets\Scripts\UI\StartButton.cs" />
     <Compile Include="Assets\Scripts\UI\ZoomIn.cs" />
     <Compile Include="Assets\Scripts\Virtual Joystick Pack\Base\Joystick.cs" />

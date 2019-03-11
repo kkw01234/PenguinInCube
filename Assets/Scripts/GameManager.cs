@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-    public Button startButton;
+    
     public bool isGameStart = false;
     public GameObject player;
     public Material[] slimeColor;
@@ -17,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Transform respawnPoint; //게임 시작시 플레이어 리스폰 장소
     public int level;
 
+    public GameObject overPanel;
     public Text timeRecord_best;
     public Text levelRecord_best;
     public Text timeRecord_now;
@@ -88,13 +88,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log("You are wrong " + level);
             }
         }
-        else
-        {
-            timer.reset();
-        }
-
-        if(GGUMI.instance == null)
-            startButton.gameObject.SetActive(true);
     }
 
     public void CheckAnswer(int answer)
@@ -128,6 +121,7 @@ public class GameManager : MonoBehaviour
         levelRecord_now.text = string.Format("No. {0:00}", level);
         level = 1;
         loadProblem = true;
+        overPanel.SetActive(true);
         isGameStart = false;
         Cube.instance.clearExample();
     }

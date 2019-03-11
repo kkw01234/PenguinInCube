@@ -24,6 +24,8 @@ public class Clock : MonoBehaviour
     //타이머
     void Timer()
     {
+        if (!GameManager.instance.isGameStart)
+            startTime = (int)Time.time;
         elapsedTime = (int) Time.time - startTime;
         sec = elapsedTime - hour * 3600 - min * 60; //시간 계산
         if (sec >= 60)
@@ -38,11 +40,6 @@ public class Clock : MonoBehaviour
             hour++;
         }
 
-        timer.text = string.Format("{0:00}:{1:00}:{2:00}", hour, min, sec); //두 자리수로 나타냄
-    }
-
-    public void reset()
-    {
-        startTime = (int) Time.time;
+        timer.text = string.Format("{0:00}:{1:00}:{2:00}", hour, min, sec); //두 자리수로 나타냄;
     }
 }
