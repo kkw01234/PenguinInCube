@@ -10,10 +10,13 @@ public class ZoomIn : MonoBehaviour, IPointerDownHandler
     public GameObject content;
     public GameObject data;
 
-    void Start()
+    void Update()
     {
-        board.SetActive(false);
-        content.SetActive(false);
+        if (!GameManager.instance.isGameStart)
+        {
+            board.SetActive(false);
+            content.SetActive(false);
+        }
     }
 
     public void OnOffWhiteboard()
