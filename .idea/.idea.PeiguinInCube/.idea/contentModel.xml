@@ -23,6 +23,8 @@
           <e p="Database" t="Include">
             <e p="Problem.cs" t="Include" />
             <e p="problemDatabase.cs" t="Include" />
+            <e p="Rank.cs" t="Include" />
+            <e p="RankDatabase.cs" t="Include" />
             <e p="sqlLogin.cs" t="Include" />
           </e>
           <e p="GameManager.cs" t="Include" />
@@ -40,7 +42,10 @@
             <e p="Arrow.cs" t="Include" />
             <e p="Chanel.cs" t="Include" />
             <e p="Clock.cs" t="Include" />
+            <e p="CloseAnswerPanel.cs" t="Include" />
+            <e p="CloseEndPanel.cs" t="Include" />
             <e p="Cube.cs" t="Include" />
+            <e p="OpenAnswerPanel.cs" t="Include" />
             <e p="StartButton.cs" t="Include" />
             <e p="ZoomIn.cs" t="Include" />
           </e>

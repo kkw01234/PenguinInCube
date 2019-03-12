@@ -44,6 +44,7 @@ public class ProblemDatabase : MonoBehaviour
             n++;
         }
 
+       
         reader.Close();
         reader = null;
         SqlLogin.instance.CloseDatabase();
@@ -78,7 +79,7 @@ public class ProblemDatabase : MonoBehaviour
         reader = null;
         SqlLogin.instance.CloseDatabase();
     }
-
+     
 
     public Problem GetQuestion(int id)
     {

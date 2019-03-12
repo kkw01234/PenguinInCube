@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
 
     void Clear()
     {
+        //나중에 지울 코드
         if (level > level_best)
         {
             level_best = level;
@@ -119,6 +120,10 @@ public class GameManager : MonoBehaviour
         }
         timeRecord_now.text = string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec); //두 자리수로 나타냄
         levelRecord_now.text = string.Format("No. {0:00}", level);
+        
+        
+        
+        
         level = 1;
         loadProblem = true;
         overPanel.SetActive(true);
