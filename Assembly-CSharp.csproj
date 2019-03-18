@@ -71,7 +71,6 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player\Foot.cs" />
     <Compile Include="Assets\Scripts\Player\GGUMI.cs" />
-    <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Toy\Lever.cs" />
     <Compile Include="Assets\Scripts\Toy\Machine.cs" />
     <Compile Include="Assets\Scripts\Toy\Valve.cs" />
@@ -87,6 +86,7 @@
     <Compile Include="Assets\Scripts\Virtual Joystick Pack\Joysticks\FixedJoystick.cs" />
     <Compile Include="Assets\Scripts\Virtual Joystick Pack\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Scripts\Virtual Joystick Pack\Joysticks\VariableJoystick.cs" />
+    <None Include="Assets\Polygonal Particles\Assets\Shaders\GradientBackgroundShader.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/권경민/Documents/PenguinInCube/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

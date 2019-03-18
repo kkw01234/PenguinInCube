@@ -8,27 +8,29 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     
     public bool isGameStart = false;
-    public GameObject player;
-    public Material[] slimeColor;
-    public GameObject[] arrows;
-    public Chanel chanel;
-    public Clock timer;
+    public GameObject player; //플레이어
+    public Material[] slimeColor; //슬라임의 색
     public Transform respawnPoint; //게임 시작시 플레이어 리스폰 장소
-    public int level;
 
-    public GameObject overPanel;
+    public ParticleSystem[] fireworks; //문제 정답시 축포
+    public Chanel chanel; //ui
+    public Clock timer; //ui
+
+    public GameObject overPanel; //게임 종료화면
     public Text timeRecord_best;
     public Text levelRecord_best;
     public Text timeRecord_now;
     public Text levelRecord_now;
     private int time_best = 999999;
     private int level_best = 0;
-    
+
+    public int level;
+    public GameObject[] arrows; //선택지 화살표
     private Problem presentProblem; // 현재 문제
-    private bool loadProblem; //문제를 로드해줌
+    public bool loadProblem; //문제를 로드해줌
     private bool complete; // 문제를 맞췄을 경우
     private bool fail; // 문제를 틀렸을 경우
-    private int answerNumber; // 문제의 정답
+    public int answerNumber; // 문제의 정답
 
     private void Awake()
     {
@@ -47,7 +49,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && isGameStart)
         {
             Clear();
-            Debug.Log("game Exit");
         }
 
         if (isGameStart)
@@ -68,17 +69,14 @@ public class GameManager : MonoBehaviour
 
             if (complete)
             {
-                int moveIndex = (answerNumber + 2) % 4;
-                GGUMI.instance.transform.position = new Vector3(
-                    arrows[moveIndex].transform.position.x,
-                    GGUMI.instance.gameObject.transform.position.y,
-                    arrows[moveIndex].transform.position.z);
+                for(int i =0; i < fireworks.Length; i++)
+                {
+                    fireworks[i].Play();
+                }
+                //여기있던 코드 일부 Arrow.cs로 옮김
                 Debug.Log("You are right " + level);
                 level++;
                 complete = false;
-                loadProblem = true;
-                Cube.instance.ResetToy();
-                Cube.instance.GenerateToy();
             }
 
             if (fail)

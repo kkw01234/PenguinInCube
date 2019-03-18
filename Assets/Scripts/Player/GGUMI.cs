@@ -47,8 +47,10 @@ public class GGUMI : MonoBehaviour
 
     public Foot foot;
     private bool isFeetGrounded = false;
+    public bool isMoveToDoor = false;
     private Vector3 moveDir;
     public float moveSpeed;
+    private bool isJump = false;
     public float jumpPower;
 
     void PlayerMoveController()
@@ -66,7 +68,7 @@ public class GGUMI : MonoBehaviour
             moveDir = Vector3.right * Input.GetAxisRaw("Horizontal") +
                       Vector3.forward * Input.GetAxisRaw("Vertical"); //키보드
         //수평 이동
-        if (moveDir != Vector3.zero)
+        if (moveDir != Vector3.zero && !isMoveToDoor)
         {
             transform.eulerAngles =
                 Vector3.up * Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg; //움직이는 방향을 바라보기
@@ -78,14 +80,17 @@ public class GGUMI : MonoBehaviour
         {
             if (ani.IsPlaying("falling")) //떨어지는 중일때 땅에 닿으면 착지 모션
                 ani.CrossFade("landing");
-            else if (moveDir == Vector3.zero) //가만히 서있을 경우 정지 모션
+            else if (ani.IsPlaying("landing")) //착지 모션이 재생되면 점프가 끝난것으로 간주
+                isJump = false;
+            else if (moveDir == Vector3.zero && !isMoveToDoor) //가만히 서있을 경우 정지 모션
                 ani.CrossFade("idle");
             else //가만히 있지 않을 경우 걷기 모션
                 ani.CrossFade("walk");
-            if (joyJumpButton.isPressed) //"점프"버튼을 누른상태일 경우 점프 모션
+            if (joyJumpButton.isPressed && !isJump) //"점프"버튼을 누른상태일 경우 점프 모션
             {
                 ani.CrossFade("jump");
                 rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse); //위로 힘을 가해서 점프
+                isJump = true;
             }
         }
         else if (ani.IsPlaying("jump")) //땅에 닿아있지 않으면서 점프중일 경우

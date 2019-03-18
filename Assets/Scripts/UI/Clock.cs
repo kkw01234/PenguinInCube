@@ -24,8 +24,14 @@ public class Clock : MonoBehaviour
     //타이머
     void Timer()
     {
+        //게임 중이 아닐시 타이머 초기화
         if (!GameManager.instance.isGameStart)
+        {
             startTime = (int)Time.time;
+            sec = 0;
+            min = 0;
+            hour = 0;
+        }
         elapsedTime = (int) Time.time - startTime;
         sec = elapsedTime - hour * 3600 - min * 60; //시간 계산
         if (sec >= 60)
