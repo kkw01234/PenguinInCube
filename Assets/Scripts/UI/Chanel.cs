@@ -30,4 +30,9 @@ public class Chanel : MonoBehaviour
         nowChanel = newChanel;
         chanel.text = string.Format("CH - {0:000}", nowChanel);
     }
+
+    public int setnowChanel()
+    {
+        return nowChanel;
+    }
 }

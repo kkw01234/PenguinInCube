@@ -13,6 +13,7 @@ public class CloseEndPanel : MonoBehaviour, IPointerUpHandler
         {
             overPanel.SetActive(false);
             startButton.SetActive(true);
+            GameManager.instance.levelRecord_best.text = "";
         }
     }
 }

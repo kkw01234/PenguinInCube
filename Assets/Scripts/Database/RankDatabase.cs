@@ -11,9 +11,6 @@ public class RankDatabase : MonoBehaviour
     *미완성이에유 아직 건드리지 마세요ㅠㅠㅠㅠㅠㅠ
     *
     * */
-    
-   
-   
    
    public static RankDatabase instance;
    public List<Rank> rlist = null;
@@ -25,12 +22,14 @@ public class RankDatabase : MonoBehaviour
    }
 
 
-   public void getRankDatabase()
+   public void getRankDatabase() //Rank에 들어있는 데이터베이스를 level은 내림차순, besttime은 오름차순으로 정렬함
    {
+
+      rlist.RemoveRange(0,rlist.Count);
       SqlLogin.instance.OpenDatabase("Problem");
       IDbCommand dbcmd = SqlLogin.instance.dbconn.CreateCommand();
 
-      string sqlQuery = "SELECT * FROM problem ORDER BY level DESC, besttime ASC";
+      string sqlQuery = "SELECT * FROM Rank ORDER BY level DESC, besttime ASC";
 
       dbcmd.CommandText = sqlQuery;
 
@@ -40,9 +39,8 @@ public class RankDatabase : MonoBehaviour
       while (reader.Read())
       {
          Rank rank = new Rank();
-         DateTime bestdate = DateTime.Parse(reader.GetString(2));
-         DateTime besttime = DateTime.Parse(reader.GetString(3));
-         rank.setRank(reader.GetInt32(0), reader.GetString(1), bestdate, besttime,reader.GetInt32(4));
+         DateTime date = DateTime.FromFileTime(reader.GetInt64(2));
+         rank.setRank(reader.GetInt32(0), reader.GetString(1), date, reader.GetInt32(3),reader.GetInt32(4));
          rlist.Add(rank);
          n++;
       }
@@ -54,30 +52,28 @@ public class RankDatabase : MonoBehaviour
 
    }
 
-   public bool insertRank(Rank rank)
+   public bool insertRank(Rank rank) //rank에 들어갈만한 데이터이면 들어감
    {
-      if (compareRank(rank))
+      if (compareRank(rank))//비교
       {
-         try
-         {
+         
+         
             SqlLogin.instance.OpenDatabase("Problem");
             IDbCommand dbcmd = SqlLogin.instance.dbconn.CreateCommand();
 
-            string sqlQuery = "Insert INTO Rank(name,bestdate,besttime) VALUES(" + rank.name + "," + rank.bestdate +
+            string sqlQuery = "INSERT INTO Rank(name,bestdate,besttime,level) VALUES('" + rank.name + "'," + rank.bestdate.ToFileTime() +
                               "," +
-                              rank.besttime + ")";
+                              rank.besttime + ","+rank.level+")";
             dbcmd.CommandText = sqlQuery;
-
+         
             IDataReader reader = dbcmd.ExecuteReader();
             reader.Close();
             reader = null;
             SqlLogin.instance.CloseDatabase();
+            getRankDatabase();
             return true;
-         }
-         catch (Exception e)
-         {
-            return false;
-         }
+         
+       
       }
       else
          return false;
@@ -88,7 +84,7 @@ public class RankDatabase : MonoBehaviour
    {
       SqlLogin.instance.OpenDatabase("Problem");
       IDbCommand dbcmd = SqlLogin.instance.dbconn.CreateCommand();
-      string sqlQuery = "DELETE FROM Rank WHERE "+rank.id;
+      string sqlQuery = "DELETE FROM Rank WHERE id="+rank.id;
 
       dbcmd.CommandText = sqlQuery;
 
@@ -96,28 +92,33 @@ public class RankDatabase : MonoBehaviour
       reader.Close();
       reader = null;
       SqlLogin.instance.CloseDatabase();
+      
+     
 
    }
    
-   public bool compareRank(Rank rank) // 비교해서 최악을 삭제시키는 함수
+   public bool compareRank(Rank rank) // 비교해서 현재 점수가 최악점수보다 좋으면 삭제시키고 현재 점수가 들어감
    {
-      SqlLogin.instance.OpenDatabase("Problem");
-      IDbCommand dbcmd = SqlLogin.instance.dbconn.CreateCommand();
-      string sqlQuery = "SELECT * FROM Rank WHERE min(level), max(besttime)"; // 설마  같은 레벨에 besttime이 똑같은게 들어가진 않겠지?????
-
-      dbcmd.CommandText = sqlQuery;
-     
-
-      IDataReader reader = dbcmd.ExecuteReader();
-      while (reader.Read())
+      if (rlist.Count < 10)
       {
-         //DateTime 
-         Rank worstRank = new Rank();
-         
+         return true;
       }
-      reader.Close();
-      reader = null;
-      SqlLogin.instance.CloseDatabase();
+      
+      Rank worstRank = rlist[rlist.Count - 1];
+      if (rank.level > worstRank.level)
+      {
+         deleteRank(worstRank);
+         return true;
+      }else if (rank.level == worstRank.level)
+      {
+         if (rank.besttime < worstRank.besttime)
+         {
+            deleteRank(worstRank);
+            return true;
+         }
+      }
+             
+      
       return false;
    }
    //db에서 최악의 레벨과 최악의 시간을 뽑아서 비교만 하는게 더 나은가?  

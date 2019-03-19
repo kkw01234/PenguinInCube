@@ -8,7 +8,7 @@ public class Rank : MonoBehaviour
    public int id;
    public string name;
    public DateTime bestdate;
-   public DateTime besttime;
+   public int besttime;
    public int level;
 
 
@@ -17,7 +17,7 @@ public class Rank : MonoBehaviour
       
    }
 
-   public Rank(int id, string name, DateTime bestdate, DateTime besttime, int level)
+   public Rank(int id, string name, DateTime bestdate, int besttime, int level)
    {
       this.id = id;
       this.name = name;
@@ -25,7 +25,7 @@ public class Rank : MonoBehaviour
       this.besttime = besttime;
       this.level = level;
    }
-   public void setRank(int id, string name, DateTime bestdate,DateTime besttime,int level)
+   public void setRank(int id, string name, DateTime bestdate,int besttime,int level)
    {
       this.id = id;
       this.name = name;
