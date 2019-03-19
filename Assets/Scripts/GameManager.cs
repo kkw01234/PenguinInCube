@@ -92,13 +92,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CheckAnswer(int answer)
+    public void CheckAnswer(int answer) //답체크 함수
     {
         if (answer == answerNumber) complete = true;
         else fail = true;
     }
 
-    void Clear()
+    void Clear() //초기화 함수
     {
         //나중에 지울 코드
         /*
@@ -125,25 +125,8 @@ public class GameManager : MonoBehaviour
         levelRecord_now.text = string.Format("No. {0:00}", level);
         
         */
-
-        Rank nowrank = new Rank(0,chanel.setnowChanel().ToString(),DateTime.Today,timer.elapsedTime,level); //id 0은 임의의값임 (Insert 할 때는 필요 없는 값)
-       
-        RankDatabase.instance.insertRank(nowrank);
-
+        gameOverRecord();
       
-        levelRecord_now.text = string.Format("No. {0:00} LV. {1:00} ", nowrank.name,nowrank.level)+string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec);
-
-        int num = RankDatabase.instance.rlist.Count;
-        if (num > 5)
-        {
-            num = 5;
-        }
-        for (int i = 0; i < num; ++i)
-        {
-            Rank rank = RankDatabase.instance.rlist[i];
-            levelRecord_best.text += string.Format("No. {0:00} LV. {1:00} ", rank.name,rank.level)+string.Format("{0:00}:{1:00}:{2:00}", rank.besttime/3600, (rank.besttime/60)%60, rank.besttime%60)+"\n";
-            
-        }
         
         //초기화 코드
         level = 1;
@@ -157,5 +140,27 @@ public class GameManager : MonoBehaviour
     {
         ProblemDatabase.instance.SqlsomeProblemInfo(level);
         
+    }
+
+    void gameOverRecord() //게임 종료시 종료 화면 데이터 올리는 함수
+    {
+        Rank nowrank = new Rank(0,chanel.setnowChanel().ToString(),DateTime.Today,timer.elapsedTime,level); //id 0은 임의의값임 (Insert 할 때는 필요 없는 값)
+       
+        RankDatabase.instance.insertRank(nowrank);
+
+        //timerRecord_now.text => 궁금한게 있는데 이거 왜 분리 해놨어?????
+        levelRecord_now.text = string.Format("No. {0:00} LV. {1:00} ", nowrank.name,nowrank.level)+string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec);
+
+        int num = RankDatabase.instance.rlist.Count;
+        if (num > 5)
+        {
+            num = 5;
+        }
+        for (int i = 0; i < num; ++i) //UI 수정해야할 부분
+        {
+            Rank rank = RankDatabase.instance.rlist[i];
+            levelRecord_best.text += string.Format("No. {0:00} LV. {1:00} ", rank.name,rank.level)+string.Format("{0:00}:{1:00}:{2:00}", rank.besttime/3600, (rank.besttime/60)%60, rank.besttime%60)+"\n";
+            
+        }
     }
 }

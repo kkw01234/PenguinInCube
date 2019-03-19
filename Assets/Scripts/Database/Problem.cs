@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Problem
+public class Problem //문제 bean (객체)
 {
     public int id;
     public string question;

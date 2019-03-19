@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rank : MonoBehaviour
+public class Rank : MonoBehaviour //RankBean(객체)
 {
    public int id;
    public string name;

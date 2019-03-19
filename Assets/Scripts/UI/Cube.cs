@@ -105,7 +105,7 @@ public class Cube : MonoBehaviour
         return answernumber;
     }
 
-    public void clearExample()
+    public void clearExample() //보기를 완전 초기화
     {
         for (int i = 0; i < bottomExample.Length; ++i)
         {

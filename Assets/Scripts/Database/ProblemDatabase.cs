@@ -7,7 +7,8 @@ using UnityEngine;
 public class ProblemDatabase : MonoBehaviour
 {
     public static ProblemDatabase instance;
-    public List<Problem> plist = null;
+    public List<Problem> plist = null;//문제 저장하는 리스트
+    
 
     // Start is called before the first frame update
     void Awake()
