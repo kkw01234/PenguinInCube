@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public bool isGameStart = false;
     public GameObject player; //플레이어
     public Material[] slimeColor; //슬라임의 색
+    public Sprite[] slimeImage; //슬라임의 색
     public Transform respawnPoint; //게임 시작시 플레이어 리스폰 장소
 
     public ParticleSystem[] fireworks; //문제 정답시 축포
@@ -21,10 +22,12 @@ public class GameManager : MonoBehaviour
     public GameObject overPanel; //게임 종료화면
     public Text timeRecord_best;
     public Text levelRecord_best;
+    public Text numRecord_now;
     public Text timeRecord_now;
     public Text levelRecord_now;
     private int time_best = 999999;
     private int level_best = 0;
+    public Image ggumi;
 
     public int level;
     public GameObject[] arrows; //선택지 화살표
@@ -134,8 +137,15 @@ public class GameManager : MonoBehaviour
         overPanel.SetActive(true);
         isGameStart = false;
         Cube.instance.clearExample();
+
+        //게임 종료 화면에서 레포트 안의 슬라임 색 설정
+        for (int i =0; i < slimeColor.Length; i++)
+        {
+            if (GGUMI.instance.GetComponentInChildren<MeshRenderer>().material.name == slimeColor[i].name +" (Instance)")
+                ggumi.sprite = slimeImage[i];
+        }
     }
-    
+
     void GetProblem()
     {
         ProblemDatabase.instance.SqlsomeProblemInfo(level);
@@ -148,8 +158,10 @@ public class GameManager : MonoBehaviour
        
         RankDatabase.instance.insertRank(nowrank);
 
-        //timerRecord_now.text => 궁금한게 있는데 이거 왜 분리 해놨어?????
-        levelRecord_now.text = string.Format("No. {0:00} LV. {1:00} ", nowrank.name,nowrank.level)+string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec);
+        //timerRecord_now.text => 궁금한게 있는데 이거 왜 분리 해놨어????? 붙여서 해놓으면 간격이 안맞잖아 길이 달라지면
+        timeRecord_now.text = string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec);
+        numRecord_now.text = string.Format("No. {0:00}", nowrank.name);
+        levelRecord_now.text = string.Format("LV. {0:00} ", nowrank.level);
 
         int num = RankDatabase.instance.rlist.Count;
         if (num > 5)
