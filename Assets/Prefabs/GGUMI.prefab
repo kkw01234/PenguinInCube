@@ -89,7 +89,7 @@ MonoBehaviour:
   joyActionButton: {fileID: 0}
   foot: {fileID: 8017812145828646663}
   isMoveToDoor: 0
-  moveSpeed: 0.8
+  moveSpeed: 2
   jumpPower: 4
 --- !u!1 &98135162
 GameObject:
@@ -153,7 +153,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 659fd3f418af2fd4885abeab834eb908, type: 2}
+  - {fileID: 2100000, guid: 5a60fc9e578a843419b17829fe48355e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
