@@ -20,11 +20,10 @@ public class GameManager : MonoBehaviour
     public Clock timer; //ui
 
     public GameObject overPanel; //게임 종료화면
-    public Text timeRecord_best;
-    public Text levelRecord_best;
+    public Text[] record_best;
     public Text numRecord_now;
-    public Text timeRecord_now;
     public Text levelRecord_now;
+    public Text timeRecord_now;
     private int time_best = 999999;
     private int level_best = 0;
     public Image ggumi;
@@ -158,11 +157,12 @@ public class GameManager : MonoBehaviour
        
         RankDatabase.instance.insertRank(nowrank);
 
-        //timerRecord_now.text => 궁금한게 있는데 이거 왜 분리 해놨어????? 붙여서 해놓으면 간격이 안맞잖아 길이 달라지면
-        timeRecord_now.text = string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec);
-        numRecord_now.text = string.Format("No. {0:00}", nowrank.name);
+        //현재 기록 입력
+        numRecord_now.text = string.Format("No. {0:000}", nowrank.name);
         levelRecord_now.text = string.Format("LV. {0:00} ", nowrank.level);
+        timeRecord_now.text = string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec);
 
+        //최고 기록 top5 입력
         int num = RankDatabase.instance.rlist.Count;
         if (num > 5)
         {
@@ -171,7 +171,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < num; ++i) //UI 수정해야할 부분
         {
             Rank rank = RankDatabase.instance.rlist[i];
-            levelRecord_best.text += string.Format("No. {0:00} LV. {1:00} ", rank.name,rank.level)+string.Format("{0:00}:{1:00}:{2:00}", rank.besttime/3600, (rank.besttime/60)%60, rank.besttime%60)+"\n";
+            record_best[i].text = string.Format("No. {0:000} LV. {1:00} ", rank.name, rank.level)
+                                + string.Format("{0:00}:{1:00}:{2:00}", rank.besttime / 3600, (rank.besttime / 60) % 60, rank.besttime % 60);
             
         }
     }
