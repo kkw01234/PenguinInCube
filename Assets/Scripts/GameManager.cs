@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private int time_best = 999999;
     private int level_best = 0;
     public Image ggumi;
+    public Text errortext;
 
     public int level;
     public GameObject[] arrows; //선택지 화살표

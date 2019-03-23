@@ -4,8 +4,12 @@
     <e p="C:\Users\gny32\.Rider2018.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\gny32\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_PeiguinInCube.-927287597.00" t="ExcludeRecursive" />
     <e p="D:\Unity\PeiguinInCube" t="IncludeRecursive">
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Plugins" t="Include">
+          <e p="LeanTween.cs" t="Include" />
+        </e>
         <e p="Polygonal Particles" t="Include">
           <e p="Assets" t="Include">
             <e p="Shaders" t="Include">
