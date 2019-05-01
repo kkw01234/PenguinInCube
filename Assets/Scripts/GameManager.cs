@@ -54,9 +54,7 @@ public class GameManager : MonoBehaviour
     {
         //임시게임 종료 버튼
         if (Input.GetKeyDown(KeyCode.X) && isGameStart)
-        {
             Clear();
-        }
 
         if (isGameStart)
         {

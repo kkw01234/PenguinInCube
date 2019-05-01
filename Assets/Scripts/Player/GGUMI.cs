@@ -62,11 +62,11 @@ public class GGUMI : MonoBehaviour
             isFeetGrounded = false;
 
         //이동 방향 계산
-        if (joystick.isActiveAndEnabled)
-            moveDir = Vector3.right * joystick.Horizontal + Vector3.forward * joystick.Vertical; //조이스틱
-        else
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             moveDir = Vector3.right * Input.GetAxisRaw("Horizontal") +
                       Vector3.forward * Input.GetAxisRaw("Vertical"); //키보드
+        else if (joystick.isActiveAndEnabled)
+            moveDir = Vector3.right * joystick.Horizontal + Vector3.forward * joystick.Vertical; //조이스틱
         //수평 이동
         if (moveDir != Vector3.zero && !isMoveToDoor)
         {
@@ -79,18 +79,30 @@ public class GGUMI : MonoBehaviour
         if (isFeetGrounded && !ani.IsPlaying("jump")) //땅위에 있으면서 점프중이 아닐경우 (Case)
         {
             if (ani.IsPlaying("falling")) //떨어지는 중일때 땅에 닿으면 착지 모션
+            {
+                StartCoroutine("PlayMoveSound");
                 ani.CrossFade("landing");
+            }
             else if (ani.IsPlaying("landing")) //착지 모션이 재생되면 점프가 끝난것으로 간주
                 isJump = false;
             else if (moveDir == Vector3.zero && !isMoveToDoor) //가만히 서있을 경우 정지 모션
+            {
+                StopCoroutine("PlayMoveSound");
+                isSoundDelay = false;
+                delayCount = 0;
                 ani.CrossFade("idle");
+            }
             else //가만히 있지 않을 경우 걷기 모션
+            {
+                StartCoroutine("PlayMoveSound");
                 ani.CrossFade("walk");
+            }
             if (joyJumpButton.isPressed && !isJump) //"점프"버튼을 누른상태일 경우 점프 모션
             {
                 ani.CrossFade("jump");
                 rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse); //위로 힘을 가해서 점프
                 isJump = true;
+                GetComponent<AudioSource>().Play();
             }
         }
         else if (ani.IsPlaying("jump")) //땅에 닿아있지 않으면서 점프중일 경우
@@ -119,5 +131,28 @@ public class GGUMI : MonoBehaviour
             joyActionButton.isPressed = true;
         else if (Input.GetButtonUp("Action"))
             joyActionButton.isPressed = false;
+    }
+
+    public float delayCount = 0;
+    public bool isSoundDelay = false;
+
+    IEnumerator PlayMoveSound()
+    {
+        if (isSoundDelay)
+        {
+            delayCount++;
+            if (delayCount > 16)
+            {
+                GetComponent<AudioSource>().Play();
+                delayCount = 0;
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+        else if (!GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().Play();
+            isSoundDelay = true;
+        }
+        yield return new WaitForSeconds(0f);
     }
 }
