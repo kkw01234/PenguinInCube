@@ -11,11 +11,11 @@ public class CloseEndPanel : MonoBehaviour, IPointerUpHandler
     {
         if(GGUMI.instance == null)
         {
+            //최고, 현재 기록 표시 초기화
+            GameManager.instance.nowRecordText.SetActive(false);
+            GameManager.instance.bestRecordText.SetActive(false);
             overPanel.SetActive(false);
             startButton.SetActive(true);
         }
-        //최고, 현재 기록 표시 초기화
-        GameManager.instance.nowRecordText.SetActive(false);
-        GameManager.instance.bestRecordText.SetActive(false);
     }
 }

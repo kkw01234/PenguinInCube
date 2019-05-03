@@ -6,7 +6,6 @@ public class ResetDropOne : MonoBehaviour
 {
     private Vector3 respawnPos;
     private Vector3 ggumiPos;
-    private Vector3 resetPoint;
 
     private void Start()
     {
@@ -17,8 +16,7 @@ public class ResetDropOne : MonoBehaviour
     {
         Debug.Log("drop!");
         ggumiPos = GGUMI.instance.transform.position;
-        resetPoint = new Vector3(ggumiPos.x, respawnPos.y, ggumiPos.z);
-        GGUMI.instance.transform.position = resetPoint;
+        GGUMI.instance.transform.position = respawnPos;
         GGUMI.instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }
