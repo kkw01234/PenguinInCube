@@ -24,9 +24,12 @@ public class GameManager : MonoBehaviour
     public Text numRecord_now;
     public Text levelRecord_now;
     public Text timeRecord_now;
-    private int time_best = 999999;
-    private int level_best = 0;
     public Image ggumi;
+    public Text reportText; //단계별로 보고서의 글이 달라짐
+    public string[] intEquivalent;
+    public GameObject bestRecordText;
+    public GameObject nowRecordText;
+
     public Text errortext;
 
     public int level;
@@ -101,31 +104,6 @@ public class GameManager : MonoBehaviour
 
     void Clear() //초기화 함수
     {
-        //나중에 지울 코드
-        /*
-        if (level > level_best)
-        {
-            level_best = level;
-            levelRecord_best.text = string.Format("No. {0:00}", level);
-            time_best = 999999;
-            if ((timer.hour * 3600 + timer.min * 60 + timer.sec) < time_best)
-            {
-                time_best = timer.hour * 3600 + timer.min * 60 + timer.sec;
-                timeRecord_best.text = string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec); //두 자리수로 나타냄
-            }
-        }
-        else if (level == level_best)
-        {
-            if ((timer.hour * 3600 + timer.min * 60 + timer.sec) < time_best)
-            {
-                time_best = timer.hour * 3600 + timer.min * 60 + timer.sec;
-                timeRecord_best.text = string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec); //두 자리수로 나타냄
-            }
-        }
-        timeRecord_now.text = string.Format("{0:00}:{1:00}:{2:00}", timer.hour, timer.min, timer.sec); //두 자리수로 나타냄
-        levelRecord_now.text = string.Format("No. {0:00}", level);
-        
-        */
         gameOverRecord();
       
         
@@ -172,7 +150,33 @@ public class GameManager : MonoBehaviour
             Rank rank = RankDatabase.instance.rlist[i];
             record_best[i].text = string.Format("No. {0:000} LV. {1:00} ", rank.name, rank.level)
                                 + string.Format("{0:00}:{1:00}:{2:00}", rank.besttime / 3600, (rank.besttime / 60) % 60, rank.besttime % 60);
-            
+            if (RankCompare(rank,nowrank))
+            {
+                nowRecordText.SetActive(true);
+                nowRecordText.GetComponent<RectTransform>().position = record_best[i].GetComponent<RectTransform>().position + new Vector3(-113, 0, 0);
+                if (i==0)
+                    bestRecordText.SetActive(true);
+            }
         }
+        
+        //보고서 멘트
+        if (nowrank.level == 1) //미생물 단계
+            reportText.text = String.Format("이 꾸미의 지능은 {0} 수준이다. 벌레만도 못하다...", intEquivalent[Random.Range(0, 6)]);
+        else if (nowrank.level == 2) //조류 단계
+            reportText.text = String.Format("이 꾸미의 지능은 {0} 수준이다. 방향 정도는 알고 있는 것 같다.", intEquivalent[Random.Range(6, 11)]);
+        else if (nowrank.level == 3) //영장류 단계
+            reportText.text = String.Format("이 꾸미의 지능은 {0} 수준이다. 멍청하지는 않은 것 같다.", intEquivalent[Random.Range(11, 16)]);
+        else if (nowrank.level == 4) //사람 단계
+            reportText.text = String.Format("이 꾸미의 지능은 {0} 수준이다. 우리와 의사소통도 가능할 것 같다.", intEquivalent[Random.Range(16, 19)]);
+        else if (nowrank.level == 5) //응원 단계
+            reportText.text = String.Format("이 꾸미의 지능은 훌륭하다. {0}.", intEquivalent[Random.Range(19, 21)]);
+    }
+
+    bool RankCompare(Rank rank1, Rank rank2)
+    {
+        if ((rank1.name == rank2.name) && (rank1.level == rank2.level) && (rank1.besttime == rank2.besttime))
+            return true;
+        else
+            return false;
     }
 }
