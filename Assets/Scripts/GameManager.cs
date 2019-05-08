@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     private bool fail; // 문제를 틀렸을 경우
     public int answerNumber; // 문제의 정답
 
+    public GameObject eleDoorPos; //엔딩 장면 복도의 문 위치
+
     private void Awake()
     {
         instance = this;

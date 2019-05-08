@@ -22,6 +22,8 @@ public class Arrow : MonoBehaviour
     IEnumerator GetIntoDoor()
     {
         int moveIndex = (GameManager.instance.answerNumber + 2) % 4;
+        if (GameManager.instance.level == 5)
+            moveIndex = 4;
         GGUMI.instance.isMoveToDoor = true;
         GGUMI.instance.transform.LookAt(aniGateOpen.transform);
         aniGateOpen.Play("GateOpen"); //들어갈 문 열기
